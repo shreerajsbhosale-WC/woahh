@@ -1,0 +1,337 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Fonts — drop the licensed font files into /public/fonts using these names.
+  Until they exist the fallbacks in --font-* are used automatically.
+*/
+@font-face { font-family: "Moonscape"; src: url("/fonts/Moonscape-Demo.woff2") format("woff2"), url("/fonts/Moonscape-Demo.otf") format("opentype"); font-display: swap; }
+@font-face { font-family: "Rectinos"; src: url("/fonts/Rectinos.woff2") format("woff2"), url("/fonts/Rectinos.otf") format("opentype"); font-display: swap; }
+@font-face { font-family: "Naru Sans"; src: url("/fonts/NaruSans-Demo.woff2") format("woff2"), url("/fonts/NaruSans-Demo.otf") format("opentype"); font-display: swap; }
+@font-face { font-family: "Westmount"; src: url("/fonts/Westmount.woff2") format("woff2"), url("/fonts/Westmount.otf") format("opentype"); font-display: swap; }
+
+@theme inline {
+  /* Square, formal geometry: no soft corners */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-lavender: var(--lavender);
+  --color-mint: var(--mint);
+  --color-butter: var(--butter);
+  --color-coral: var(--coral);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  /* Moonscape = wordmark/display, Rectinos = headings, Naru Sans = body, Westmount = labels */
+  --font-display: "Rectinos", "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Naru Sans", "Inter", system-ui, sans-serif;
+  --font-wordmark: "Moonscape", "Rectinos", "Space Grotesk", system-ui, sans-serif;
+  --font-label: "Westmount", "Space Grotesk", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0px;
+
+  /* Palette: #F0F4F8  #B0BEC5  #78909C  #546E7A  #263238 */
+  --pal-50: #F0F4F8;
+  --pal-200: #B0BEC5;
+  --pal-400: #78909C;
+  --pal-600: #546E7A;
+  --pal-900: #263238;
+
+  --background: #F0F4F8;
+  --foreground: #263238;
+
+  --card: #FFFFFF;
+  --card-foreground: #263238;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #263238;
+
+  --primary: #263238;
+  --primary-foreground: #F0F4F8;
+
+  --secondary: #B0BEC5;
+  --secondary-foreground: #263238;
+
+  --muted: #E3E9EE;
+  --muted-foreground: #546E7A;
+
+  --accent: #DCE4EA;
+  --accent-foreground: #263238;
+
+  /* Legacy named blocks remapped onto the palette */
+  --lavender: #B0BEC5;
+  --mint: #DCE4EA;
+  --butter: #F0F4F8;
+  --coral: #78909C;
+
+  --success: #546E7A;
+  --destructive: #A63D40; /* functional error colour, kept outside the palette for accessibility */
+  --destructive-foreground: #F0F4F8;
+
+  --border: #B0BEC5;
+  --input: #B0BEC5;
+  --ring: #546E7A;
+
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #263238;
+  --sidebar-primary: #263238;
+  --sidebar-primary-foreground: #F0F4F8;
+  --sidebar-accent: #E3E9EE;
+  --sidebar-accent-foreground: #263238;
+  --sidebar-border: #B0BEC5;
+  --sidebar-ring: #546E7A;
+
+  /* Flat replacements — every existing gradient/glow class now renders solid + hairline */
+  --gradient-hero: linear-gradient(180deg, #E3E9EE 0%, #F0F4F8 100%);
+  --gradient-primary: linear-gradient(#263238, #263238);
+  --gradient-card: linear-gradient(#FFFFFF, #FFFFFF);
+
+  --shadow-glow: none;
+  --shadow-soft: 0 0 0 1px #B0BEC5;
+
+  --hex: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  --oct: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+@theme inline {
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    font-family: var(--font-sans);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    /* fine engineering grid, barely there */
+    background-image:
+      linear-gradient(to right, rgb(176 190 197 / 0.18) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(176 190 197 / 0.18) 1px, transparent 1px);
+    background-size: 64px 64px;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+    font-weight: 700;
+  }
+
+  ::selection { background: #263238; color: #F0F4F8; }
+}
+
+@layer utilities {
+  .bg-gradient-primary { background-image: none; background-color: var(--pal-900); }
+  .bg-gradient-hero { background-image: var(--gradient-hero); }
+  .bg-gradient-card { background-image: none; background-color: var(--card); }
+  .text-gradient { background-image: none; color: var(--pal-600); }
+  .shadow-glow { box-shadow: none; }
+  .shadow-soft { box-shadow: none; }
+  .glass { background: var(--card); border: 1px solid var(--border); }
+
+  .hover-lift { transition: border-color 0.2s ease, background-color 0.2s ease; }
+  .hover-lift:hover { border-color: var(--pal-900); background-color: #FFFFFF; }
+
+  .story-link { position: relative; display: inline-block; }
+  .story-link::after {
+    content: ""; position: absolute; left: 0; bottom: -2px; width: 100%; height: 1px;
+    background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease;
+  }
+  .story-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  .animate-float, .animate-float-slow { animation: none; }
+
+  .font-wordmark { font-family: var(--font-wordmark); }
+  .font-label { font-family: var(--font-label); }
+  .clip-hex { clip-path: var(--hex); }
+  .clip-oct { clip-path: var(--oct); }
+}
+
+/* ---------- Shapes & components ---------- */
+
+/* Elongated octagon CTA — solid ink with a hairline inner keyline */
+.btn-octagon {
+  clip-path: polygon(4% 0%, 96% 0%, 100% 30%, 100% 70%, 96% 100%, 4% 100%, 0% 70%, 0% 30%);
+  border-radius: 0;
+  background: var(--pal-900) !important;
+  color: var(--pal-50) !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-label);
+}
+.btn-octagon:hover { background: var(--pal-600) !important; }
+
+/* Wordmark */
+.wordmark-limitless {
+  font-family: var(--font-wordmark);
+  font-weight: 800;
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
+  color: var(--pal-900);
+}
+
+/* Hairline label / eyebrow */
+.eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--pal-600);
+}
+
+/* Octagon-notched panel: thin outline + chamfered corners via clip-path over a border layer */
+.panel-oct {
+  position: relative;
+  background: var(--card);
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
+  box-shadow: inset 0 0 0 1px var(--pal-200);
+}
+
+/* Floating stat badges — flat rectangular tags */
+.float-badge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0;
+  background: var(--card);
+  border: 1px solid var(--pal-600);
+  box-shadow: none;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--pal-900);
+  white-space: nowrap;
+}
+.float-badge.lavender { background: var(--pal-200); border-color: var(--pal-900); }
+.float-badge.mint { background: var(--pal-900); color: var(--pal-50); border-color: var(--pal-900); }
+.float-badge.butter { background: var(--pal-50); }
+
+/* Page frame: a single thin rule inset from the viewport, replacing the stitched border */
+.stitch-frame {
+  position: fixed;
+  inset: 12px;
+  z-index: 70;
+  pointer-events: none;
+  border: 1px solid var(--pal-400);
+  box-shadow: none;
+  border-radius: 0;
+}
+@media (max-width: 640px) {
+  .stitch-frame { inset: 6px; }
+}
+
+/* ===== Anime mode — sakura sunset, manga-inked ===== */
+html.anime {
+  --background: oklch(0.97 0.02 340);
+  --foreground: oklch(0.2 0.04 320);
+
+  --card: oklch(1 0.01 340);
+  --card-foreground: oklch(0.2 0.04 320);
+
+  --popover: oklch(1 0.01 340);
+  --popover-foreground: oklch(0.2 0.04 320);
+
+  --primary: oklch(0.68 0.24 350);
+  --primary-foreground: oklch(0.99 0.01 340);
+
+  --secondary: oklch(0.93 0.05 320);
+  --secondary-foreground: oklch(0.25 0.06 320);
+
+  --muted: oklch(0.94 0.03 330);
+  --muted-foreground: oklch(0.45 0.06 320);
+
+  --accent: oklch(0.78 0.18 230);
+  --accent-foreground: oklch(0.15 0.05 320);
+
+  --destructive: oklch(0.6 0.25 25);
+  --destructive-foreground: oklch(0.99 0.01 340);
+
+  --border: oklch(0.2 0.04 320 / 30%);
+  --input: oklch(0.2 0.04 320 / 30%);
+  --ring: oklch(0.68 0.24 350);
+
+  --gradient-hero: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      oklch(0.78 0.22 350 / 0.45),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 80% 30%,
+      oklch(0.8 0.2 230 / 0.4),
+      transparent 70%
+    );
+  --gradient-primary: linear-gradient(
+    135deg,
+    oklch(0.72 0.24 350),
+    oklch(0.78 0.2 50)
+  );
+  --gradient-card: linear-gradient(
+    180deg,
+    oklch(1 0.01 340 / 0.95),
+    oklch(0.96 0.03 330 / 0.85)
+  );
+
+  --shadow-glow: 0 0 60px oklch(0.7 0.24 350 / 0.35);
+  --shadow-soft: 0 8px 30px -8px oklch(0.5 0.15 350 / 0.3);
+
+  --font-display: "Bangers", "Space Grotesk", system-ui, sans-serif;
+}
+
+html.anime body {
+  background-image:
+    radial-gradient(circle at 15% 10%, oklch(0.85 0.18 350 / 0.35), transparent 45%),
+    radial-gradient(circle at 85% 20%, oklch(0.85 0.18 50 / 0.3), transparent 45%),
+    radial-gradient(circle at 50% 90%, oklch(0.85 0.15 230 / 0.3), transparent 50%);
+}
+
+html.anime h1, html.anime h2, html.anime h3, html.anime h4 {
+  letter-spacing: 0.01em;
+  text-shadow: 2px 2px 0 oklch(0.2 0.04 320 / 0.15);
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
